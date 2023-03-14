@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -22,6 +23,27 @@ func crlf() string {
 	return lf
 }
 
+func UnpackInput(v string) *[3]int {
+	t := [3]int{}
+	for i := 0; i < 3; i++ {
+		t_v := v[5*i : (5*i)+5]
+		t_a, e := strconv.Atoi(strings.Trim(t_v, " "))
+		check(e)
+		t[i] = t_a
+	}
+	return &t
+}
+
+func IsTris(arr *[3]int) bool {
+	permute := [3][2]int{{arr[1], arr[2]}, {arr[0], arr[2]}, {arr[0], arr[1]}}
+	for n, a := range permute {
+		if arr[n] >= a[0]+a[1] {
+			return false
+		}
+	}
+	return true
+}
+
 func FetchData(slice *[]string) {
 	path := flag.String("p", "data.txt", "path to data")
 	flag.Parse()
@@ -35,8 +57,5 @@ func FetchData(slice *[]string) {
 }
 
 func main() {
-	dataSrc := make([]string, 0)
-	FetchData(&dataSrc)
-
-	fmt.Println(dataSrc)
+	fmt.Println("no")
 }
