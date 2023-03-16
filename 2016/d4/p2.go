@@ -34,8 +34,6 @@ func FetchData(slice *[]string) {
 	}
 }
 
-// ===================================================
-
 func main() {
 	dataSrc := make([]string, 0)
 	FetchData(&dataSrc)
