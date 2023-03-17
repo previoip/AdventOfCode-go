@@ -51,16 +51,6 @@ type Room struct {
 	checksum string
 }
 
-type kv struct {
-	k string
-	v int
-}
-
-type kvs struct {
-	c    *kv
-	next *kvs
-}
-
 func GetIndex[T comparable](a *[]T, b T) int {
 	for n, v := range *a {
 		if v == b {
@@ -141,12 +131,10 @@ func join(s *[]string) string {
 func FlushBuffPerm(strsl *[]string, buff *string) {
 	s := strings.Split(*buff, "")
 	p := [][]string{}
-	// l0 := len((*strsl)[0])
 	lb := len(*buff)
-	// if lb+l0 > 5 {
-	// 	lb = lb - (5 - l0)
-	// }
+
 	genPerm(s, lb, &p)
+
 	nn := len(*strsl) * len(p)
 	for i := 0; i < nn-1; i++ {
 		*strsl = append(*strsl, (*strsl)[i%len(*strsl)])
@@ -225,5 +213,5 @@ func main() {
 		flag = false
 	}
 	fmt.Println(v_sums)
-
+	fmt.Println("data does not produce correct answer")
 }
