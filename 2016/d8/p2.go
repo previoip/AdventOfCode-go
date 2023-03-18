@@ -34,10 +34,6 @@ func FetchData(slice *[]string, path *string) {
 func InitArgvPath() {
 	path := flag.String("p", "data.txt", "path to data")
 	flag.Parse()
-	pt := "test_data.txt"
-	if len(*path)-len(pt) > 0 && len((*path)[len(*path)-len(pt):]) >= len(pt) && strings.Compare((*path)[len(*path)-len(pt):], pt) == 0 {
-		isTest = true
-	}
 
 	dataSrc = make([]string, 0)
 	FetchData(&dataSrc, path)
@@ -52,7 +48,6 @@ func InitArgvRaw() {
 // globals
 var (
 	dataSrc []string
-	isTest  bool
 )
 
 // init
@@ -63,5 +58,5 @@ func Init() {
 // main
 func main() {
 	Init()
-	fmt.Println(dataSrc)
+	fmt.Println("See part 1")
 }
