@@ -47,6 +47,12 @@ func InitArgvRaw() {
 	dataSrc = make([]string, 0)
 }
 
+func TestPrintln(a ...any) {
+	if isTest {
+		fmt.Println(a...)
+	}
+}
+
 // ===================================================
 
 // globals
